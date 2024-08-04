@@ -1,0 +1,89 @@
+<!-- Extend the base template -->
+{% extends 'global_templates/base.html' %}
+
+<!-- Load static files tag -->
+{% load static %}
+
+<!-- Set the title of the page to "Tools" -->
+{% block title %} Tools {% endblock %}
+
+<!-- Start the content block -->
+{% block content %}
+
+<!-- Include the global navigation bar -->
+
+{% include 'global_templates/global_navbar.html' %}
+
+<!-- Section for displaying tool details -->
+<section id="product-page-detail" class="product-page-detail">
+    <!-- Heading for the tools section -->
+    <h1 id="explore">All Tools</h1>
+
+    <!-- Form for searching tools -->
+    <form id="search-form" class="search-form">
+        <!-- Container for the search input and clear button -->
+        <div class="search-input-container">
+            <!-- Search input field -->
+            <input type="text" id="search-input" class="search-input" placeholder="Search tools...">
+            <!-- Button to clear the search input -->
+            <button type="button" id="clear-button" class="clear-button" aria-label="Clear search">&times;</button>
+        </div>
+        <!-- Submit button for the search form -->
+        <button type="submit" class="search-button">
+            <!-- Search icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <!-- Circle in the search icon -->
+                <circle cx="11" cy="11" r="8"></circle>
+                <!-- Line in the search icon -->
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+        </button>
+    </form>
+
+    <!-- Message displayed when no courses match the search query for live searching and redirect client back -->
+    <p id="no-results-message" class="no-results-message">No tools found:
+        <a href="{% url 'tools:tools' %}"> Go back</a>
+    </p>
+
+    <!-- Container for the tool items -->
+    <div id="tools-container" class="product-page-detail-grid">
+
+        <!-- Check Availability of tools and loop through them -->
+        {% if tools %}
+        <!-- Loop through each tool -->
+        {% for tool in tools %}
+        <!-- Tool card with data attributes for title and description -->
+        <div class="product-page-detail-card" data-title="{{ tool.title }}"
+             data-description="{{ tool.description }}">
+            <!-- Image of the tool -->
+            <img class="product-page-detail-image" src="{{ tool.image.url }}" alt="Tool Image">
+            <!-- Title of the tool -->
+            <h3 class="product-page-detail-title">{{ tool.title }}</h3>
+
+            <!-- Check if price is available and render it -->
+            {% if tool.price %}
+            <!-- Display the price of the tool -->
+            <span class="product-page-detail-price">{{ tool.price }}</span>
+            {% endif %}
+            <!-- Description of the tool -->
+            <p class="product-page-detail-description">{{ tool.description }}</p>
+            <!-- Link to get the tool -->
+            <a href="{{ tool.affiliate_link }}" class="product-page-detail-link">Get it now</a>
+
+        </div>
+        <!-- End loop -->
+        {% endfor %}
+        <!-- End if condition -->
+        {% endif %}
+    </div>
+</section>
+
+<!-- Include the global footer -->
+{% include 'global_templates/global_footer.html' %}
+
+<!-- Link to the JavaScript file tools.js -->
+<script src="{% static 'js/tools.js' %}"></script>
+
+<!-- End the content block -->
+{% endblock %}

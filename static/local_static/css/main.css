@@ -1,0 +1,1613 @@
+/* Homepage CSS */
+:root {
+    /* Define CSS variables for colors */
+    --primary-color: #4a90e2; /* Primary color used throughout the site */
+    --secondary-color: #50c878; /* Secondary color for accents */
+    --background-color: #f8f9fa; /* Background color for the page */
+    --text-color: #333; /* Standard text color */
+    --white: #ffffff; /* White color for backgrounds and text */
+}
+
+* {
+    /* Apply universal styles to all elements */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+body {
+    /* Body element styles */
+    font-family: 'Poppins', sans-serif; /* Set font family */
+    line-height: 1.6; /* Set line height for better readability */
+    color: var(--text-color); /* Use text color variable */
+    background-color: var(--background-color); /* Use background color variable */
+}
+
+/* Loader CSS */
+#loader-wrapper {
+    /* Styles for the loader wrapper */
+    position: fixed; /* Fix the loader to the viewport */
+    top: 0; /* Position at the top */
+    left: 0; /* Position at the left */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background: #f0f0f0; /* Light gray background color */
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    z-index: 9999; /* High z-index to overlay content */
+}
+
+#loader {
+    /* Styles for the loader element */
+    width: 100px; /* Width of the loader */
+    height: 100px; /* Height of the loader */
+    position: relative; /* Position relative for absolute children */
+    animation: rotate 2s linear infinite; /* Continuous rotation animation */
+}
+
+#loader div {
+    /* Common styles for loader child divs */
+    position: absolute; /* Position relative to parent */
+    width: 50px; /* Width of each square */
+    height: 50px; /* Height of each square */
+}
+
+#loader div:nth-child(1) {
+    /* First square */
+    top: 0; /* Position at the top */
+    left: 0; /* Position at the left */
+    background: #ff4136; /* Red background color */
+    animation: shape1 2s linear infinite; /* Unique animation for this square */
+}
+
+#loader div:nth-child(2) {
+    /* Second square */
+    top: 0; /* Position at the top */
+    right: 0; /* Position at the right */
+    background: #0074d9; /* Blue background color */
+    animation: shape2 2s linear infinite; /* Unique animation for this square */
+}
+
+#loader div:nth-child(3) {
+    /* Third square */
+    bottom: 0; /* Position at the bottom */
+    left: 0; /* Position at the left */
+    background: #2ecc40; /* Green background color */
+    animation: shape3 2s linear infinite; /* Unique animation for this square */
+}
+
+#loader div:nth-child(4) {
+    /* Fourth square */
+    bottom: 0; /* Position at the bottom */
+    right: 0; /* Position at the right */
+    background: #ffdc00; /* Yellow background color */
+    animation: shape4 2s linear infinite; /* Unique animation for this square */
+}
+
+@keyframes rotate {
+    /* Keyframes for rotation animation */
+    0% { transform: rotate(0deg); } /* Start at 0 degrees */
+    100% { transform: rotate(360deg); } /* End at 360 degrees */
+}
+
+@keyframes shape1 {
+    /* Keyframes for first square animation */
+    0%, 100% { transform: translate(0, 0); } /* Start and end at original position */
+    25% { transform: translate(100%, 0); } /* Move right */
+    50% { transform: translate(100%, 100%); } /* Move down */
+    75% { transform: translate(0, 100%); } /* Move left */
+}
+
+@keyframes shape2 {
+    /* Keyframes for second square animation */
+    0%, 100% { transform: translate(0, 0); } /* Start and end at original position */
+    25% { transform: translate(0, 100%); } /* Move down */
+    50% { transform: translate(-100%, 100%); } /* Move left */
+    75% { transform: translate(-100%, 0); } /* Move up */
+}
+
+@keyframes shape3 {
+    /* Keyframes for third square animation */
+    0%, 100% { transform: translate(0, 0); } /* Start and end at original position */
+    25% { transform: translate(100%, 0); } /* Move right */
+    50% { transform: translate(100%, -100%); } /* Move up */
+    75% { transform: translate(0, -100%); } /* Move left */
+}
+
+@keyframes shape4 {
+    /* Keyframes for fourth square animation */
+    0%, 100% { transform: translate(0, 0); } /* Start and end at original position */
+    25% { transform: translate(-100%, 0); } /* Move left */
+    50% { transform: translate(-100%, -100%); } /* Move up */
+    75% { transform: translate(0, -100%); } /* Move right */
+}
+
+.loaded #loader-wrapper {
+    /* Hide the loader when the page is loaded */
+    visibility: hidden; /* Make loader invisible */
+    opacity: 0; /* Fully transparent */
+    transition: all 0.3s ease-out; /* Smooth transition */
+}
+
+/* Header and Navigation */
+header {
+    /* Styles for the header */
+    position: fixed; /* Fix header to the top */
+    top: 0; /* Position at the top */
+    left: 0; /* Position at the left */
+    width: 100%; /* Full width */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    z-index: 1000; /* High z-index to overlay content */
+    background-color: var(--white); /* White background */
+}
+
+nav {
+    /* Styles for the navigation bar */
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between items */
+    align-items: center; /* Center items vertically */
+    padding: 0.5rem 5%; /* Padding around navigation bar */
+}
+
+.logo {
+    /* Styles for the logo container */
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center items vertically */
+}
+
+.logo-image {
+    /* Styles for the logo image */
+    height: 40px; /* Fixed height */
+    width: auto; /* Auto width to maintain aspect ratio */
+    margin-right: 10px; /* Space to the right of the image */
+}
+
+#logo-text {
+    /* ID for logo text */
+    text-decoration: none; /* No underline */
+}
+
+.logo-text {
+    /* Styles for the logo text */
+    font-size: 1.5rem; /* Large font size */
+    font-weight: 700; /* Bold font weight */
+    color: var(--primary-color); /* Primary color */
+}
+
+.nav-links {
+    /* Styles for navigation links container */
+    display: flex; /* Use flexbox */
+    list-style: none; /* Remove list bullets */
+}
+
+.nav-links li {
+    /* Styles for each navigation link item */
+    margin-left: 2rem; /* Space between items */
+}
+
+.nav-links a {
+    /* Styles for navigation link */
+    text-decoration: none; /* No underline */
+    color: var(--text-color); /* Standard text color */
+    font-weight: 600; /* Slightly bold font */
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+.nav-links a:hover {
+    /* Hover effect for navigation link */
+    color: var(--primary-color); /* Change color on hover */
+}
+
+.burger {
+    /* Styles for the hamburger menu button (mobile) */
+    display: none; /* Hidden by default */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.burger div {
+    /* Styles for the lines of the burger menu */
+    width: 25px; /* Fixed width */
+    height: 3px; /* Fixed height */
+    background-color: var(--text-color); /* Standard text color */
+    margin: 5px; /* Space between lines */
+    transition: all 0.3s ease; /* Smooth transition */
+}
+
+/* Responsive design */
+/* Navbar */
+@media screen and (max-width: 768px) {
+    /* Styles for screens smaller than 768px */
+    nav {
+        /* Adjust padding for smaller screens */
+        padding: 0.5rem 5%;
+    }
+
+    .logo-image {
+        /* Adjust logo image size for smaller screens */
+        height: 30px;
+    }
+
+    #logo-text {
+        /* Adjust logo text decoration */
+        text-decoration: none;
+    }
+
+    .logo-text {
+        /* Adjust logo text size */
+        font-size: 1.2rem;
+    }
+
+    .nav-links {
+        /* Mobile menu styling */
+        position: fixed; /* Fix to the viewport */
+        right: 0; /* Position at the right */
+        top: 0; /* Position at the top */
+        height: 100vh; /* Full viewport height */
+        background-color: var(--white); /* White background */
+        display: flex; /* Use flexbox */
+        flex-direction: column; /* Column layout */
+        align-items: center; /* Center items horizontally */
+        width: 50%; /* Half width */
+        transform: translateX(100%); /* Off-screen initially */
+        transition: transform 0.5s ease-in-out; /* Smooth slide-in effect */
+        padding-top: 50px; /* Space at the top */
+    }
+
+    .nav-links li {
+        /* Spacing between mobile menu items */
+        margin: 1.5rem 0; /* Space above and below */
+        opacity: 0; /* Initially hidden */
+    }
+
+    .burger {
+        /* Show burger menu on smaller screens */
+        display: block; /* Display as block */
+        z-index: 1001; /* High z-index to overlay content */
+    }
+
+    .nav-active {
+        /* Show mobile menu */
+        transform: translateX(0%); /* Slide into view */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    /* Further adjustments for very small screens */
+    .logo-image {
+        /* Adjust logo image size for very small screens */
+        height: 25px;
+    }
+
+    .logo-text {
+        /* Adjust logo text size for very small screens */
+        font-size: 1rem;
+    }
+}
+
+/* Animation for mobile menu */
+@keyframes navLinkFade {
+    /* Fade-in animation for mobile menu items */
+    from {
+        opacity: 0; /* Start fully transparent */
+        transform: translateX(50px); /* Start shifted to the right */
+    }
+    to {
+        opacity: 1; /* End fully opaque */
+        transform: translateX(0px); /* End at original position */
+    }
+}
+
+.toggle .line1 {
+    /* Rotate first line of burger menu */
+    transform: rotate(-45deg) translate(-5px, 6px); /* Rotate and translate */
+}
+
+.toggle .line2 {
+    /* Hide second line of burger menu */
+    opacity: 0; /* Make transparent */
+}
+
+.toggle .line3 {
+    /* Rotate third line of burger menu */
+    transform: rotate(45deg) translate(-5px, -6px); /* Rotate and translate */
+}
+
+/* Theme Variables */
+:root {
+    /* Define more theme variables */
+    --bg-color: #f8f9fa; /* Background color for light theme */
+    --text-color: #333; /* Text color for light theme */
+    --primary-color: #4a90e2; /* Primary color for light theme */
+    --secondary-color: #50c878; /* Secondary color for light theme */
+    --white: #ffffff; /* White color for light theme */
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    /* Dark theme color variables */
+    --bg-color: #333; /* Background color for dark theme */
+    --text-color: #f8f9fa; /* Text color for dark theme */
+    --primary-color: #6aa8e8; /* Primary color for dark theme */
+    --secondary-color: #68d891; /* Secondary color for dark theme */
+    --white: #444; /* White color for dark theme */
+}
+
+/* Sepia Theme */
+[data-theme="sepia"] {
+    /* Sepia theme color variables */
+    --bg-color: #f1e7d0; /* Background color for sepia theme */
+    --text-color: #5b4636; /* Text color for sepia theme */
+    --primary-color: #8b4513; /* Primary color for sepia theme */
+    --secondary-color: #a0522d; /* Secondary color for sepia theme */
+    --white: #faf0e6; /* White color for sepia theme */
+}
+
+/* Theme Switcher */
+.theme-switcher {
+    order: 1; /* Position in flex order */
+}
+
+#theme-toggle {
+    background: none; /* No background */
+    border: none; /* No border */
+    cursor: pointer; /* Pointer cursor */
+    padding: 5px; /* Padding around the button */
+    border-radius: 50%; /* Round shape */
+    transition: background-color 0.3s; /* Smooth transition on hover */
+}
+
+#theme-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Light background on hover */
+}
+
+#theme-tooltip {
+    position: absolute; /* Absolute positioning */
+    top: 100%; /* Below the element */
+    right: 0; /* Align to the right */
+    background-color: var(--bg-color); /* Background color from theme */
+    color: var(--text-color); /* Text color from theme */
+    padding: 5px 10px; /* Padding inside the tooltip */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Light shadow */
+    display: none; /* Hidden by default */
+    z-index: 1000; /* Above other elements */
+    white-space: nowrap; /* Single line text */
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .theme-switcher {
+        position: absolute; /* Absolute positioning */
+        right: 60px; /* Align 60px from the right */
+        align-items-center; /* Center alignment */
+    }
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh; /* Full viewport height */
+    display: flex; /* Flexbox layout */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+    text-align: center; /* Center text */
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); /* Gradient background */
+    color: var(--white); /* White text color */
+}
+
+.hero-content h1 {
+    font-size: 3rem; /* Large font size */
+    margin-bottom: 1rem; /* Space below the heading */
+}
+
+.hero-content p {
+    font-size: 1.2rem; /* Medium font size */
+    margin-bottom: 2rem; /* Space below the paragraph */
+}
+
+.cta-button {
+    display: inline-block; /* Inline block layout */
+    padding: 0.8rem 1.5rem; /* Padding inside the button */
+    background-color: var(--white); /* White background */
+    color: var(--primary-color); /* Primary color text */
+    text-decoration: none; /* No underline */
+    border-radius: 30px; /* Rounded corners */
+    font-weight: 600; /* Bold text */
+    transition: all 0.3s ease; /* Smooth transition */
+}
+
+.cta-button:hover {
+    background-color: var(--primary-color); /* Primary background on hover */
+    color: var(--white); /* White text on hover */
+}
+
+/* Latest Software Section */
+.latest-software {
+    padding: 5rem 10%; /* Padding top/bottom and sides */
+    background-color: var(--white); /* White background */
+}
+
+.latest-software h2 {
+    text-align: center; /* Center text */
+    margin-bottom: 2rem; /* Space below the heading */
+    font-size: 2.5rem; /* Large font size */
+}
+
+.software-grid {
+    display: grid; /* Grid layout */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive columns */
+    gap: 1rem; /* Gap between items */
+    margin: 0 auto; /* Center grid */
+    max-width: 1200px; /* Maximum width */
+    padding: 0 1rem; /* Horizontal padding */
+}
+
+.software-card {
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow */
+    overflow: hidden; /* Hide overflow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+    display: flex; /* Flexbox layout */
+    flex-direction: column; /* Column layout */
+}
+
+.software-card:hover {
+    transform: translateY(-5px); /* Move up on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+}
+
+.software-image {
+    width: 100%; /* Set the image width to 100% of its container */
+    height: auto; /* Maintain aspect ratio based on width */
+    object-fit: contain; /* Fit the entire image within the container */
+    border-bottom: 1px solid #e0e0e0; /* Border at the bottom */
+}
+
+.software-title {
+    font-size: 1.25rem; /* Medium font size */
+    margin: 1rem 1rem 0.5rem; /* Spacing around the title */
+    word-wrap: break-word; /* Wrap long words */
+}
+
+.software-price {
+    display: inline-block; /* Inline block layout */
+    font-size: 1.2rem; /* Medium font size */
+    font-weight: bold; /* Bold text */
+    color: #28a745; /* Green color */
+    background-color: #e9f7ef; /* Light green background */
+    padding: 0.3rem 0.7rem; /* Padding inside the price */
+    border-radius: 20px; /* Rounded corners */
+    margin: 0 1rem 0.5rem; /* Spacing around the price */
+}
+
+.software-description {
+    font-size: 0.9rem; /* Small font size */
+    margin: 0 1rem 1rem; /* Spacing around the description */
+    word-wrap: break-word; /* Wrap long words */
+    white-space: pre-line; /* Preserve line breaks */
+    overflow-wrap: break-word; /* Wrap long words */
+    hyphens: auto; /* Automatic hyphenation */
+    max-width: 100%; /* Full width */
+    overflow: hidden; /* Hide overflow */
+    flex-grow: 1; /* Grow to fill space */
+}
+
+.software-affiliate-link {
+    display: block; /* Block layout */
+    background-color: #007bff; /* Blue background */
+    color: #ffffff; /* White text */
+    text-align: center; /* Center text */
+    padding: 0.75rem 1rem; /* Padding inside the link */
+    text-decoration: none; /* No underline */
+    font-weight: bold; /* Bold text */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.software-affiliate-link:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Media Queries for Responsive Design */
+
+/* For screens up to 768px wide */
+@media (max-width: 768px) {
+    .software-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Smaller columns */
+    }
+    .software-title {
+         word-wrap: break-word; /* Wrap long words */
+    }
+    .latest-software h2 {
+        font-size: 2.3rem; /* Adjust heading font size for medium screens */
+    }
+}
+
+/* For screens up to 600px wide */
+@media screen and (max-width: 600px) {
+    .latest-software h2 {
+        font-size: 2.3rem; /* Adjust heading font size for smaller screens */
+    }
+}
+
+/* For screens up to 480px wide */
+@media (max-width: 480px) {
+    .latest-software h2 {
+        font-size: 2.3rem; /* Adjust heading font size for very small screens */
+    }
+}
+
+/* Products Section */
+.products {
+    padding: 5rem 10%; /* Padding top/bottom and sides */
+    text-align: center; /* Center text */
+    background-color: var(--white); /* White background */
+}
+
+.products h2 {
+    font-size: 2.5rem; /* Large font size */
+    margin-bottom: 3rem; /* Space below the heading */
+}
+
+.product-grid {
+    display: grid; /* Grid layout */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive columns */
+    gap: 1rem; /* Gap between items */
+}
+
+.product-card {
+    background-color: var(--white); /* White background */
+    padding: 2rem; /* Padding inside the card */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Light shadow */
+    transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.product-card:hover {
+    transform: translateY(-10px); /* Move up on hover */
+}
+
+.product-card i {
+    font-size: 3rem; /* Large icon size */
+    color: var(--primary-color); /* Primary color */
+    margin-bottom: 1rem; /* Space below the icon */
+}
+
+.product-card h3 {
+    font-size: 1.5rem; /* Medium font size */
+    margin-bottom: 1rem; /* Space below the heading */
+}
+
+.find-product {
+    display: block; /* Block layout */
+    background-color: #007bff; /* Blue background */
+    color: #ffffff; /* White text */
+    text-align: center; /* Center text */
+    padding: 0.75rem 1rem; /* Padding inside the link */
+    text-decoration: none; /* No underline */
+    font-weight: bold; /* Bold text */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.find-product:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Media Queries for Responsive Design */
+
+/* For screens up to 768px wide */
+@media (max-width: 768px) {
+    .products h2 {
+        font-size: 2.3rem; /* Adjust heading font size for medium screens */
+    }
+}
+
+/* For screens up to 600px wide */
+@media screen and (max-width: 600px) {
+    .products h2 {
+        font-size: 2.3rem; /* Adjust heading font size for smaller screens */
+    }
+}
+
+/* For screens up to 480px wide */
+@media (max-width: 480px) {
+    .products h2 {
+        font-size: 2.3rem; /* Adjust heading font size for very small screens */
+    }
+}
+
+
+/* Reviews and Blogs Section */
+.reviews-blogs {
+    padding: 5rem 20%; /* Padding top/bottom and sides */
+    padding: 4rem 2rem; /* Padding around the section */
+    background-color: var(--white); /* White background color */
+}
+
+.reviews-blogs h2 {
+    text-align: center; /* Center align heading text */
+    font-size: 2.5rem; /* Font size for heading */
+    margin-bottom: 3rem; /* Space below heading */
+}
+
+.blog-grid {
+    display: grid; /* Grid layout for blog items */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive column layout */
+    gap: 1rem; /* Gap between grid items */
+}
+
+.blog-card {
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow for card */
+    overflow: hidden; /* Hide content overflow */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition effects */
+}
+
+.blog-card:hover {
+    transform: translateY(-5px); /* Move card up on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+}
+
+.blog-image {
+    height: 200px; /* Fixed height for image */
+    overflow: hidden; /* Hide overflow */
+}
+
+.blog-image img {
+    width: 100%; /* Full width of the container */
+    height: 100%; /* Full height of the container */
+    object-fit: cover; /* Cover the container without stretching */
+    transition: transform 0.3s ease-in-out; /* Smooth scale transition */
+}
+
+.blog-card:hover .blog-image img {
+    transform: scale(1.05); /* Slightly zoom in image on hover */
+}
+
+.blog-content {
+    padding: 1.5rem; /* Padding inside the content */
+}
+
+.blog-title {
+    font-size: 1.25rem; /* Font size for the blog title */
+    font-weight: 600; /* Bold font weight */
+    margin-bottom: 0.75rem; /* Space below the title */
+    line-height: 1.4; /* Line height for readability */
+    word-wrap: break-word; /* Wrap long words */
+}
+
+.blog-excerpt {
+    font-size: 0.9rem; /* Font size for the excerpt */
+    margin-bottom: 1rem; /* Space below the excerpt */
+    line-height: 1.6; /* Line height for readability */
+    display: -webkit-box; /* Flexbox layout for clipping */
+    -webkit-line-clamp: 3; /* Limit to 3 lines */
+    -webkit-box-orient: vertical; /* Vertical box orientation */
+    overflow: hidden; /* Hide overflow */
+}
+
+.blog-link {
+    display: inline-block; /* Inline block layout */
+    padding: 0.5rem 1rem; /* Padding inside the link */
+    background-color: #007bff; /* Blue background color */
+    color: #fff; /* White text color */
+    text-decoration: none; /* No underline */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 0.9rem; /* Font size for the link */
+    transition: background-color 0.3s ease-in-out; /* Smooth transition on hover */
+}
+
+.blog-link:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Media Queries for Responsiveness */
+
+/* For screens up to 768px wide */
+@media screen and (max-width: 768px) {
+    .reviews-blogs {
+        padding: 3rem 1rem; /* Reduced padding for smaller screens */
+    }
+
+    .reviews-blogs h2 {
+        font-size: 2.3rem; /* Smaller font size for heading */
+        margin-bottom: 2rem; /* Reduced space below heading */
+    }
+
+    .blog-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust column layout */
+    }
+
+    .blog-card {
+        background-color: var(--white); /* White background for card */
+        border-radius: 10px; /* Rounded corners */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow */
+        overflow: hidden; /* Hide content overflow */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition effects */
+        display: flex; /* Flexbox layout */
+        flex-direction: column; /* Column layout */
+    }
+
+    .blog-title {
+        word-wrap: break-word; /* Wrap long words */
+    }
+}
+
+/* For screens up to 600px wide */
+@media screen and (max-width: 600px) {
+    .reviews-blogs h2 {
+        font-size: 2.3rem; /* Adjust heading font size for smaller screens */
+    }
+}
+
+/* For screens up to 480px wide */
+@media screen and (max-width: 480px) {
+    .reviews-blogs h2 {
+        font-size: 2.3rem; /* Adjust heading font size for very small screens */
+    }
+
+    .blog-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust column layout */
+    }
+
+    .blog-card {
+        border-radius: 10px; /* Rounded corners */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow */
+        overflow: hidden; /* Hide content overflow */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition effects */
+        display: flex; /* Flexbox layout */
+        flex-direction: column; /* Column layout */
+    }
+
+    .blog-title {
+        font-size: 1.1rem; /* Smaller font size for title */
+        word-wrap: break-word; /* Wrap long words */
+    }
+
+    .blog-excerpt {
+        font-size: 0.85rem; /* Smaller font size for excerpt */
+    }
+
+    .blog-link {
+        font-size: 0.85rem; /* Smaller font size for link */
+    }
+}
+
+/* About Section */
+.about {
+    padding: 5rem 10%; /* Padding around the section */
+    background-color: var(--white); /* White background color */
+    text-align: center; /* Center align text */
+}
+
+.about h2 {
+    font-size: 2.5rem; /* Font size for the heading */
+    margin-bottom: 2rem; /* Space below heading */
+}
+
+/* Media Queries for Responsive Design */
+
+/* For screens up to 768px wide */
+@media (max-width: 768px) {
+    .about h2 {
+        font-size: 2.3rem; /* Adjust heading font size for medium screens */
+    }
+}
+
+/* For screens up to 600px wide */
+@media screen and (max-width: 600px) {
+    .about h2 {
+        font-size: 2.3rem; /* Adjust heading font size for smaller screens */
+    }
+}
+
+/* For screens up to 480px wide */
+@media (max-width: 480px) {
+    .about h2 {
+        font-size: 2.3rem; /* Adjust heading font size for very small screens */
+    }
+}
+
+
+/* Contact Section */
+.contact {
+    padding: 5rem 10%; /* Padding around the section */
+    text-align: center; /* Center align text */
+    background-color: var(--white); /* White background color */
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.1); /* Light shadow */
+    position: relative; /* Relative positioning */
+    z-index: 1; /* Layering */
+}
+
+.contact h2 {
+    font-size: 2.5rem; /* Font size for heading */
+    margin-bottom: 2rem; /* Space below heading */
+}
+
+#contact-form {
+    display: flex; /* Flexbox layout */
+    flex-direction: column; /* Column layout */
+    max-width: 500px; /* Maximum width for form */
+    margin: 0 auto; /* Center form */
+}
+
+#contact-form input,
+#contact-form textarea {
+    margin-bottom: 1rem; /* Space below form fields */
+    padding: 0.8rem; /* Padding inside the fields */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+}
+
+#contact-form button {
+    padding: 0.8rem; /* Padding inside the button */
+    background-color: var(--primary-color); /* Primary color background */
+    color: var(--white); /* White text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+#contact-form button:hover {
+    background-color: var(--secondary-color); /* Secondary color on hover */
+}
+
+#contact-form button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Media Queries for Responsive Design */
+
+/* For screens up to 768px wide */
+@media (max-width: 768px) {
+    .contact h2 {
+        font-size: 2.3rem; /* Adjust heading font size for medium screens */
+    }
+}
+
+/* For screens up to 600px wide */
+@media screen and (max-width: 600px) {
+    .contact h2 {
+        font-size: 2.3rem; /* Adjust heading font size for smaller screens */
+    }
+}
+
+/* For screens up to 480px wide */
+@media (max-width: 480px) {
+    .contact h2 {
+        font-size: 2.3rem; /* Adjust heading font size for very small screens */
+    }
+}
+
+
+/* Footer */
+footer {
+    background-color: var(--white); /* White background color */
+    padding: 3rem 10% 1rem; /* Padding around the footer */
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1); /* Light shadow */
+    position: relative; /* Relative positioning */
+    z-index: 1; /* Layering */
+}
+
+.footer-content {
+    display: flex; /* Flexbox layout */
+    justify-content: space-between; /* Space out sections */
+    flex-wrap: wrap; /* Wrap items on small screens */
+    margin-bottom: 2rem; /* Space below content */
+    gap: 1rem; /* Gap between sections */
+}
+
+.footer-section {
+    flex: 1; /* Flex growth */
+    margin-bottom: 1rem; /* Space below section */
+}
+
+.footer-section h3 {
+    margin-bottom: 1rem; /* Space below heading */
+}
+
+.footer-section ul {
+    list-style: none; /* Remove list bullets */
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem; /* Space below list items */
+}
+
+.footer-section ul li a {
+    text-decoration: none; /* No underline */
+    color: #20B2AA; /* Custom color */
+}
+
+.social-icons a {
+    font-size: 1.5rem; /* Large icon size */
+    margin-right: 1rem; /* Space between icons */
+    color: #20B2AA
+
+; /* Custom color */
+}
+
+.footer-bottom {
+    text-align: center; /* Center align text */
+    padding-top: 1rem; /* Space above the footer bottom */
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Top border line */
+}
+
+/* Cookie Banner CSS */
+.cookie-banner {
+    position: fixed; /* Fixed position at the bottom */
+    bottom: 0; /* Align to bottom */
+    left: 0; /* Align to left */
+    right: 0; /* Align to right */
+    background: #f1f1f1; /* Light background color */
+    color: #333; /* Dark text color */
+    padding: 10px; /* Padding inside banner */
+    text-align: center; /* Center align text */
+    z-index: 9999; /* High z-index to be on top */
+    display: none; /* Hidden by default */
+}
+
+.cookie-banner p {
+    margin: 0; /* Remove margin */
+    padding: 0; /* Remove padding */
+    display: inline-block; /* Inline block layout */
+}
+
+.cookie-banner button {
+    border: none; /* No border */
+    padding: 5px 10px; /* Padding inside button */
+    margin-left: 10px; /* Space between button and text */
+    cursor: pointer; /* Pointer cursor */
+}
+
+#accept-cookies {
+    background: #007bff; /* Blue background */
+    color: white; /* White text color */
+}
+
+#reject-cookies {
+    background: #dc3545; /* Red background */
+    color: white; /* White text color */
+}
+
+/* Product Pages CSS */
+#product-page-detail {
+    margin-top: 2rem; /* Margin on top */
+    padding: 5rem 10%; /* Padding around the section */
+    background-color: var(--white); /* White background color */
+}
+
+#product-page-detail h1 {
+    text-align: center; /* Center align heading text */
+    font-size: 3rem; /*  Large Font size for heading */
+    margin-bottom: 1.5rem; /* Space below heading */
+}
+
+.product-page-detail-grid {
+    display: grid; /* Grid layout for product items */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive column layout */
+    gap: 1.5rem; /* Gap between grid items */
+    margin: 0 auto; /* Center grid */
+    max-width: 850px; /* Maximum width */
+    padding: 0 1rem; /* Padding on sides */
+}
+
+.product-page-detail-card {
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow */
+    overflow: hidden; /* Hide content overflow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition effects */
+    display: flex; /* Flexbox layout */
+    flex-direction: column; /* Column layout */
+}
+
+.product-page-detail-card:hover {
+    transform: translateY(-5px); /* Move card up on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+}
+
+.product-page-detail-image {
+    width: 100%; /* Set the image width to 100% of its container */
+    height: auto; /* Maintain aspect ratio based on width */
+    object-fit: contain; /* Fit the entire image within the container */
+    border-bottom: 1px solid #e0e0e0; /* Bottom border line */
+}
+
+.product-page-detail-title {
+    font-size: 1.25rem; /* Font size for title */
+    margin: 1rem 1rem 0.5rem; /* Margin around title */
+    word-wrap: break-word; /* Wrap long words */
+}
+
+.product-page-detail-price {
+    display: inline-block; /* Inline block layout */
+    font-size: 1.2rem; /* Font size for price */
+    font-weight: bold; /* Bold font weight */
+    color: #28a745; /* Green color for price */
+    background-color: #e9f7ef; /* Light green background */
+    padding: 0.3rem 0.7rem; /* Padding around price */
+    border-radius: 20px; /* Rounded corners */
+    margin: 0 1rem 0.5rem; /* Margin around price */
+}
+
+.product-page-detail-description {
+    font-size: 0.9rem; /* Font size for description */
+    margin: 0 1rem 1rem; /* Margin around description */
+    word-wrap: break-word; /* Wrap long words */
+    white-space: pre-line; /* Preserve white space */
+    overflow-wrap: break-word; /* Wrap long words */
+    hyphens: auto; /* Auto hyphenation */
+    max-width: 100%; /* Max width */
+    overflow: hidden; /* Hide overflow */
+    flex-grow: 1; /* Grow to fill space */
+}
+
+.product-page-detail-link {
+    display: block; /* Block layout */
+    background-color: #007bff; /* Blue background */
+    color: #ffffff; /* White text color */
+    text-align: center; /* Center align text */
+    padding: 0.75rem 1rem; /* Padding inside the link */
+    text-decoration: none; /* No underline */
+    font-weight: bold; /* Bold font weight */
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+.product-page-detail-link:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Search Button CSS */
+.search-form {
+    display: flex; /* Flexbox layout */
+    align-items: center; /* Center items vertically */
+    max-width: 600px; /* Maximum width of the form */
+    margin: 20px auto; /* Center form with margin */
+    background-color: #fff; /* White background */
+    border-radius: 50px; /* Rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), 0 2px 5px rgba(0, 0, 0, 0.1); /* Light shadow */
+    overflow: hidden; /* Hide overflow */
+    transition: all 0.3s ease; /* Smooth transition effects */
+}
+
+.search-form:focus-within {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15), 0 3px 8px rgba(0, 0, 0, 0.1); /* Stronger shadow on focus */
+}
+
+.search-input-container {
+    position: relative; /* Relative positioning for clear button */
+    flex-grow: 1; /* Grow to fill space */
+}
+
+.search-input {
+    width: 100%; /* Full width */
+    padding: 15px 20px; /* Padding inside the input */
+    font-size: 16px; /* Font size */
+    border: none; /* No border */
+    background-color: transparent; /* Transparent background */
+    color: #333; /* Dark text color */
+    outline: none; /* Remove outline */
+}
+
+.search-input::placeholder {
+    color: #999; /* Placeholder text color */
+}
+
+.clear-button {
+    position: absolute; /* Absolute positioning */
+    right: 15px; /* Align to the right */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Center vertically */
+    background: none; /* No background */
+    border: none; /* No border */
+    font-size: 24px; /* Font size for icon */
+    cursor: pointer; /* Pointer cursor */
+    color: #999; /* Placeholder color */
+    display: none; /* Hidden by default */
+    transition: color 0.3s ease; /* Smooth transition on hover */
+}
+
+.clear-button:hover {
+    color: #4a90e2; /* Color on hover */
+}
+
+.search-input:not(:placeholder-shown) + .clear-button {
+    display: block; /* Show clear button when input has text */
+}
+
+.search-button {
+    background-color: #4a90e2; /* Blue background color */
+    border: none; /* No border */
+    color: white; /* White text color */
+    padding: 15px 20px; /* Padding inside button */
+    cursor: pointer; /* Pointer cursor */
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+    display: flex; /* Flexbox layout */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+}
+
+.search-button svg {
+    width: 20px; /* Icon width */
+    height: 20px; /* Icon height */
+}
+
+.search-button:hover {
+    background-color: #2a70c2; /* Darker blue on hover */
+}
+
+.search-button:focus {
+    background-color: #3a80d2; /* Slightly lighter blue on focus */
+    outline: none; /* Remove outline */
+}
+
+/* Media Queries for Responsive Design */
+@media screen and (max-width: 600px) {
+    .search-form {
+        max-width: 90%; /* Adjust width for smaller screens */
+    }
+
+    .search-input {
+        font-size: 14px; /* Smaller font size for input */
+    }
+
+    .search-button {
+        padding: 12px 15px; /* Adjust padding for button */
+    }
+
+    .search-button svg {
+        width: 18px; /* Smaller icon width */
+        height: 18px; /* Smaller icon height */
+    }
+}
+
+@media (max-width: 768px) {
+    #product-page
+
+-detail h2 {
+        font-size: 1.75rem; /* Smaller font size for heading */
+    }
+
+    .product-page-detail-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust grid layout */
+    }
+}
+
+@media (max-width: 480px) {
+    #product-page-detail {
+        padding: 1.5rem 0; /* Adjust padding */
+    }
+
+    #product-page-detail h2 {
+        font-size: 1.5rem; /* Smaller font size */
+        margin-bottom: 1rem; /* Space below heading */
+    }
+
+    .product-page-detail-grid {
+        grid-template-columns: 1fr; /* Single column layout */
+    }
+
+    .product-page-detail-card {
+        max-width: 300px; /* Maximum width of card */
+        margin: 0 auto; /* Center card */
+    }
+
+    .product-page-detail-title {
+        font-size: 1.1rem; /* Smaller font size */
+    }
+
+    .product-page-detail-price {
+        font-size: 1rem; /* Smaller font size */
+    }
+
+    .product-page-detail-description {
+        font-size: 0.85rem; /* Smaller font size */
+    }
+
+    .product-page-detail-link {
+        padding: 0.6rem 0.8rem; /* Adjust padding */
+        font-size: 0.9rem; /* Smaller font size */
+    }
+}
+
+/* no-results-message */
+#no-results-message {
+    display: none; /* Ensures the element is not displayed on the page */
+    text-align: center; /* Center-aligns the text within the message */
+    font-size: 1.1rem; /* Sets a slightly larger font size for better readability */
+    color: #777; /* Uses a soft gray color for the text to ensure it's readable but not too harsh */
+    margin-top: 2rem; /* Adds space above the message to separate it from other content */
+    padding: 1rem; /* Adds padding inside the message for better spacing */
+    background-color: #f8d7da; /* Sets a light pink background color to indicate no results in a gentle manner */
+    border: 1px solid #f5c6cb; /* Adds a subtle border that matches the background color */
+    border-radius: 5px; /* Rounds the corners of the message box for a modern look */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow to give the message a slightly lifted appearance */
+}
+
+/* Styling for the anchor tag within the no-results-message element */
+.no-results-message a {
+    color: #007BFF; /* Sets the link text color to a primary blue */
+    text-decoration: none; /* Removes the default underline from the link */
+    font-weight: bold; /* Makes the link text bold */
+    transition: color 0.3s ease, border-bottom 0.3s ease; /* Smooth transition for color and border-bottom changes */
+    border-bottom: 2px solid transparent; /* Adds an invisible bottom border for a hover effect */
+}
+
+/* Hover effect for the anchor tag */
+.no-results-message a:hover {
+    color: #0056b3; /* Changes the text color to a darker blue on hover */
+    border-bottom: 2px solid #0056b3; /* Adds a bottom border on hover for a visual cue */
+}
+
+/* Focus state for accessibility */
+.no-results-message a:focus {
+    outline: none; /* Removes the default outline */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Adds a blue shadow around the link for focus state */
+}
+
+/* Active state for the anchor tag */
+.no-results-message a:active {
+    color: #004085; /* Changes the text color to an even darker blue when the link is active */
+}
+
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    #no-results-message {
+        font-size: 1rem; /* Reduces font size on smaller screens */
+        margin-top: 1.5rem; /* Reduces space above the message for smaller screens */
+
+
+    }
+}
+
+@media (max-width: 480px) {
+    #no-results-message {
+        font-size: 0.9rem; /* Further reduces font size for very small screens */
+        margin-top: 1rem; /* Further reduces space above the message */
+
+
+    }
+}
+
+/* Blog and Review CSS */
+.blog-review-detail h1 {
+    text-align: center; /* Center the heading text */
+    font-size: 3rem; /*  Set Large font size of the heading */
+    margin-bottom: 3rem; /* Add space below the heading */
+}
+
+/* Blog Section */
+#blog-review-detail {
+    padding: 4rem 2rem; /* Add padding around the blog section */
+    background-color: var(--white); /* Set background color using a CSS variable */
+    margin-top: 3rem; /* Add space above the heading */
+}
+
+/* Blog Grid */
+.blog-review-detail-article {
+    display: grid; /* Use grid layout for the blog articles */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid columns */
+    border-radius: 10px; /* Round the corners of each article */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow to each article */
+    overflow: hidden; /* Hide overflow content */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition for transform and box-shadow */
+}
+
+.blog-review-detail-article:hover {
+    transform: translateY(-5px); /* Slightly move the article up on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Intensify the shadow on hover */
+}
+
+/* Blog Image */
+.blog-review-detail-image {
+    max-height: 800px; /* Set maximum height for the image container */
+    overflow: hidden; /* Hide overflow content */
+    display: flex; /* Use flexbox to center the image */
+    justify-content: center; /* Center the image horizontally */
+    align-items: center; /* Center the image vertically */
+}
+
+.blog-review-detail-image img {
+    width: 100%; /* Set the image width to 100% of its container */
+    height: auto; /* Maintain aspect ratio based on width */
+    object-fit: contain; /* Fit the entire image within the container */
+    transition: transform 0.3s ease-in-out; /* Smooth transition for transform */
+}
+
+.blog-review-detail-article:hover .blog-review-detail-image img {
+    transform: scale(1.05); /* Slightly scale up the image on hover */
+}
+
+
+/* Blog Content */
+.blog-review-detail-content {
+    padding: 1rem; /* Add padding around the content */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+
+}
+
+.blog-review-detail-title-h3{
+    font-size: 1.25rem; /* Set the font size of the title */
+    font-weight: 600; /* Make the title font weight bold */
+    line-height: 1.4; /* Set the line height */
+    word-wrap: break-word; /* Allow words to break to the next line */
+    padding: 10px; /* Add padding around the title */
+}
+
+.blog-review-detail-excerpt-content {
+    font-size: 0.9rem; /* Set the font size of the excerpt */
+    margin-bottom: 0.5rem; /* Add space below the excerpt */
+    line-height: 1.6; /* Set the line height */
+    word-wrap: break-word; /* Allow words to break to the next line */
+    white-space: pre-line; /* Preserve whitespace and line breaks */
+    overflow: visible; /* Ensure content is not hidden */
+}
+
+.blog-review-detail-title-h3-span {
+    font-weight: bold; /* Make the span within the title bold */
+}
+
+.blog-review-detail-excerpt-content-span {
+    font-weight: bold; /* Make the span within the excerpt bold */
+}
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 768px) {
+    #blog-review-detail {
+        padding: 3rem 1rem; /* Adjust padding for smaller screens */
+    }
+
+    .blog-review-detail-h2 {
+        font-size: 2rem; /* Adjust heading font size for smaller screens */
+        margin-bottom: 2rem; /* Adjust space below the heading */
+    }
+
+    .blog-review-detail-article {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust grid columns for smaller screens */
+    }
+
+    .blog-review-detail-content {
+        padding: 1.5rem; /* Adjust content padding for smaller screens */
+    }
+
+    .blog-review-detail-image {
+        max-height: 300px; /* Adjust maximum height for images on smaller screens */
+    }
+
+    .blog-review-detail-title-h3 {
+        font-size: 1.1rem; /* Adjust title font size for smaller screens */
+    }
+
+    .blog-review-detail-excerpt-content {
+        font-size: 0.85rem; /* Adjust excerpt font size for smaller screens */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .blog-review-detail-h2 {
+        font-size: 1.75rem; /* Adjust heading font size for very small screens */
+    }
+
+    .blog-review-detail-article {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust grid columns for very small screens */
+    }
+
+    .blog-review-detail-title-h3 {
+        font-size: 1.1rem; /* Adjust title font size for very small screens */
+    }
+
+    .blog-review-detail-excerpt-content {
+        font-size: 0.85rem; /* Adjust excerpt font size for very small screens */
+    }
+}
+
+/* Container for messages */
+.messages-container {
+    position: fixed; /* Fix the container to a specific position on the screen */
+    top: 1rem; /* Position the container 1rem from the top */
+    right: 1rem; /* Position the container 1rem from the right */
+    z-index: 9999; /* Ensure messages are above other content */
+    display: flex; /* Use flexbox for the container */
+    flex-direction: column; /* Stack messages vertically */
+    gap: 0.5rem; /* Add space between messages */
+    max-width: 90%; /* Ensure messages fit within the viewport */
+}
+
+/* Individual message styling */
+.message {
+    display: flex; /* Use flexbox for messages */
+    align-items: center; /* Center items vertically */
+    padding: 1rem; /* Add padding around messages */
+    border-radius: 5px; /* Round the corners of messages */
+    background-color: #f8d7da; /* Set background color for error messages */
+    color: #721c24; /* Set text color for error messages */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow to messages */
+    position: relative; /* Position relative for close button positioning */
+    opacity: 1; /* Set initial opacity */
+    transition: opacity 0.5s ease-out; /* Smooth transition for opacity */
+    animation: fadeIn 0.5s ease; /* Apply fadeIn animation */
+}
+
+/* Message types */
+.message.info {
+    background-color: #d1ecf1; /* Set background color for info messages */
+    color: #0c5460; /* Set text color for info messages */
+}
+
+.message.success {
+    background-color: #d4edda; /* Set background color for success messages */
+    color: #155724; /* Set text color for success messages */
+}
+
+/* Close button styling */
+.close-btn {
+    background: none; /* Remove background for the button */
+    border: none; /* Remove border for the button */
+    font-size: 1.25rem; /* Set font size for the button */
+    color: inherit; /* Inherit color from the message */
+    cursor: pointer; /* Change cursor to pointer */
+    position: absolute; /* Position the button absolutely */
+    top: 0.5rem; /* Position the button 0.5rem from the top */
+    right: 0.5rem; /* Position the button 0.5rem from the right */
+    transition: color 0.3s ease; /* Smooth transition for color */
+}
+
+/* Close button hover effect */
+.close-btn:hover {
+    color: #333; /* Change color on hover */
+}
+
+/* Animation for message appearance */
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* Start with 0 opacity */
+        transform: translateY(-10px); /* Start with slight upward movement */
+    }
+    to {
+        opacity: 1; /* End with full opacity */
+        transform: translateY(0); /* End with no movement */
+    }
+}
+
+/* Automatically hide messages after 5 seconds */
+@keyframes fadeOut {
+    from {
+        opacity: 1; /* Start with full opacity */
+    }
+    to {
+        opacity: 0; /* End with 0 opacity */
+    }
+}
+
+/* Apply the fadeOut animation */
+.message.fade-out {
+    animation: fadeOut 0.5s ease-out forwards; /* Apply fadeOut animation */
+}
+
+/* Media Queries for Smaller Screens */
+@media screen and (max-width: 768px) {
+    .messages-container {
+        right: 0.5rem; /* Adjust right position for smaller screens */
+        top: 0.5rem; /* Adjust top position for smaller screens */
+        max-width: 95%; /* More space on smaller screens */
+    }
+
+    .message {
+        padding: 0.75rem; /* Less padding for smaller screens */
+        font-size: 0.9rem; /* Slightly smaller text */
+    }
+
+    .close-btn {
+        font-size: 1rem; /* Smaller close button */
+        top: 0.25rem; /* Adjust top position for smaller screens */
+        right: 0.25rem; /* Adjust right position for smaller screens */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .message {
+        padding: 0.5rem; /* Further reduced padding */
+        font-size: 0.8rem; /* Smaller text size for very small screens */
+    }
+
+    .close-btn {
+        font-size: 0.9rem; /* Smaller close button */
+        top: 0.2rem; /* Adjust top position for very small screens */
+        right: 0.2rem; /* Adjust right position for very small screens */
+    }
+}
+
+/* Back to Top Button */
+.back-to-top {
+    /* Fixed position at the bottom right corner */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    /* Button background color */
+    background-color: #007bff;
+    /* Text color */
+    color: #fff;
+    /* Remove border */
+    border: none;
+    /* Round shape */
+    border-radius: 50%;
+    /* Padding inside the button */
+    padding: 10px 15px;
+    /* Hide the button initially */
+    display: none;
+    /* Center the icon inside the button */
+    justify-content: center;
+    align-items: center;
+    /* Pointer cursor on hover */
+    cursor: pointer;
+    /* Add a subtle shadow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Smooth transition for opacity and visibility */
+    transition: opacity 0.3s, visibility 0.3s;
+    /* Ensure button appears above other content */
+    z-index: 1000;
+}
+
+/* Font Awesome icon inside the button */
+.back-to-top i {
+    /* Icon size */
+    font-size: 20px;
+}
+
+/* Responsive styles for smaller devices */
+@media (max-width: 600px) {
+    .back-to-top {
+        /* Adjust position and padding */
+        bottom: 15px;
+        right: 15px;
+        padding: 8px 12px;
+    }
+
+    .back-to-top i {
+        /* Adjust icon size */
+        font-size: 16px;
+    }
+}
+
+/* Class to show the button */
+.back-to-top.show {
+    /* Flexbox to show the button */
+    display: flex;
+}
+
+/* Class to hide the button */
+.back-to-top.hide {
+    /* Make the button invisible */
+    opacity: 0;
+    /* Make the button not interactable */
+    visibility: hidden;
+}
+
+/* Style for the arrow button */
+.arrow-button {
+    margin-left: 10px; /* Adds space between the title and the button */
+    display: flex; /* Aligns children (arrow) horizontally */
+    align-items: center; /* Vertically centers the children */
+    justify-content: center; /* Centers the arrow inside the button */
+    width: 40px; /* Sets the width of the button */
+    height: 40px; /* Sets the height of the button */
+    text-decoration: none; /* Removes underline from the link */
+    background-color: #007BFF; /* Background color of the button */
+    border-radius: 4px; /* Rounds the corners of the button */
+    transition: background-color 0.3s, transform 0.3s; /* Adds transition effects for hover */
+}
+
+/* Style for the arrow inside the button */
+.arrow {
+    font-size: 24px; /* Sets the font size of the arrow */
+    color: white; /* Sets the color of the arrow */
+}
+
+/* Style for the button on hover */
+.arrow-button:hover {
+    background-color: #0056b3; /* Darker background color on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}
+

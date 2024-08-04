@@ -1,0 +1,97 @@
+<!-- Extend the base template -->
+{% extends 'global_templates/base.html' %}
+
+<!-- Load static files tag -->
+{% load static %}
+
+<!-- Set the title of the page to "Software" -->
+{% block title %} Software {% endblock %}
+
+<!-- Start the content block -->
+{% block content %}
+
+<!-- Include the global navigation bar -->
+
+{% include 'global_templates/global_navbar.html' %}
+
+<!-- Section for displaying software details -->
+<section id="product-page-detail" class="product-page-detail">
+
+    <!-- Heading for the software section -->
+    <h1 id="explore">All Software</h1>
+
+    <!-- Form for searching software -->
+    <form id="search-form" class="search-form">
+
+        <!-- Container for the search input and clear button -->
+        <div class="search-input-container">
+
+            <!-- Search input field -->
+            <input type="text" id="search-input" class="search-input" placeholder="Search software...">
+
+            <!-- Button to clear the search input -->
+            <button type="button" id="clear-button" class="clear-button" aria-label="Clear search">&times;</button>
+        </div>
+
+        <!-- Submit button for the search form -->
+        <button type="submit" class="search-button">
+
+            <!-- Search icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+                <!-- Circle in the search icon -->
+                <circle cx="11" cy="11" r="8"></circle>
+
+                <!-- Line in the search icon -->
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+        </button>
+    </form>
+
+    <!-- Message displayed when no courses match the search query for live searching and redirect client back -->
+    <p id="no-results-message" class="no-results-message">No software found:
+        <a href="{% url 'software:software' %}"> Go back</a>
+    </p>
+
+    <!-- Container for the software items -->
+    <div id="software-container" class="product-page-detail-grid">
+
+        <!-- Check if there are any software items -->
+        {% if all_software %}
+        <!-- Loop through each software item -->
+        {% for software in all_software %}
+
+        <!-- Software card with data attributes for title and description -->
+        <div class="product-page-detail-card" data-title="{{ software.title }}"
+             data-description="{{ software.description }}">
+            <!-- Image of the software -->
+            <img class="product-page-detail-image" src="{{ software.image.url }}" alt="Software Image">
+            <!-- Title of the software -->
+            <h3 class="product-page-detail-title">{{ software.title }}</h3>
+
+            <!-- Check if the software has a price -->
+            {% if software.price %}
+            <!-- Display the price of the software -->
+            <span class="product-page-detail-price">{{ software.price }}</span>
+            {% endif %}
+            <!-- Description of the software -->
+            <p class="product-page-detail-description">{{ software.description }}</p>
+            <!-- Link to get the software -->
+            <a href="{{ software.affiliate_link }}" class="product-page-detail-link">Get it now</a>
+        </div>
+        <!-- End loop -->
+        {% endfor %}
+        <!-- End if condition -->
+        {% endif %}
+    </div>
+</section>
+
+<!-- Include the global footer -->
+{% include 'global_templates/global_footer.html' %}
+
+<!-- Link to the JavaScript file software.js -->
+<script src="{% static 'js/software.js' %}"></script>
+
+<!-- End the content block -->
+{% endblock %}

@@ -1,0 +1,103 @@
+<!-- Load static files tag -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head section of the HTML document -->
+<head>
+    <!-- Character set for the document -->
+    <meta charset="UTF-8">
+    <!-- Viewport settings for responsive design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Compatibility mode for Internet Explorer -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Title of the webpage, with a block for dynamic content -->
+    <title>{% block title %}{% endblock %} | Fastworldtec</title>
+
+    <!-- Meta description for SEO, with a block for dynamic content -->
+    <meta name="description"
+          content="{% block meta_description %}Discover top-rated software, premium themes,
+           essential tools, and transformative courses – all handpicked to boost your productivity
+           and skills. Our honest reviews and exclusive deals help you make informed decisions and
+           save money. Start optimizing your digital life today!{% endblock %}"
+    >
+
+    <!-- SEO-related meta tags for keywords and author -->
+    <meta name="keywords" content="software reviews,theme recommendations, productivity tools, online courses">
+    <meta name="author" content="fastworldtec">
+
+    <!-- Favicon for the webpage -->
+    <link rel="icon" type="image/png" href="{% static 'assets/favicon.png' %}">
+    <!-- Apple Touch Icon for iOS devices -->
+    <link rel="apple-touch-icon" href="{% static 'images/apple_touch_icon.jpg' %}">
+    <!-- Main stylesheet for the webpage -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <!-- Google Font for custom typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<!-- Body section of the HTML document -->
+<body>
+
+<!-- Check if there are any messages -->
+{% if messages %}
+<!-- Container for holding all messages -->
+<div class="messages-container">
+    <!-- Loop through each message -->
+    {% for message in messages %}
+    <!-- Individual message box -->
+    <div class="message {{ message.tags }}">
+        <!-- Container for the message content -->
+        <span class="message-content">
+                    {% block message %}
+            <!-- Display the message content -->
+                        {{ message }}
+                    {% endblock %}
+                </span>
+        <!-- Button to close the message manually -->
+        <button class="close-btn" aria-label="Close">&times;</button>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<!-- Back to Top Button -->
+<button id="back-to-top" class="back-to-top" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+</button>
+
+<!-- Loader wrapper for the loading animation -->
+<div id="loader-wrapper">
+    <!-- Loader animation -->
+    <div id="loader">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+<!-- Main content block -->
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+
+
+<!-- Cookie banner for user consent -->
+<div id="cookie-banner" class="cookie-banner">
+    <p>This website uses cookies to ensure you get the best experience on our website.</p>
+    <button id="accept-cookies">Accept</button>
+    <button id="reject-cookies">Reject</button>
+</div>
+
+<!-- Link to the JavaScript file main.js -->
+<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>

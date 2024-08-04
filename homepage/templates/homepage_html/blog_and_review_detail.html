@@ -1,0 +1,67 @@
+<!-- Extend the base template -->
+{% extends 'global_templates/base.html' %}
+
+<!-- Load static files tag -->
+{% load static %}
+
+<!-- Set the title of the page to "Blog & Reviews" -->
+{% block title %} Blog & Reviews {% endblock %}
+
+<!-- Start the content block -->
+{% block content %}
+
+<!-- Include the global navigation bar -->
+{% include 'global_templates/global_navbar.html' %}
+
+<!-- Section for the blog and review details -->
+<section id="blog-review-detail" class="blog-review-detail">
+    <!-- Heading for the blog and review section -->
+    <h1 id="explore">Expert Reviews and Blogs</h1>
+
+    <!-- Check availability of blog and review -->
+    {% if blog_and_review %}
+    <!-- Article container for the individual blog/review -->
+    <article class="blog-review-detail-article">
+        <!-- Div for the blog/review image -->
+        <div class="blog-review-detail-image">
+            <!-- Image for the blog/review -->
+            <img src="{{ blog_and_review.image.url }}" alt="Blog/Review Image">
+        </div>
+        <!-- Div for the blog/review content -->
+        <div class="blog-review-detail-content">
+            <!-- Title of the blog/review -->
+            <h3 class=".blog-review-detail-title-h3">
+                <!-- Span for the title label -->
+                <span class="blog-review-detail-title-span">TITLE:</span>{{ blog_and_review.title }}
+            </h3>
+            <!-- Excerpt of the blog/review -->
+            <p class="blog-review-detail-excerpt-content">
+                <!-- Span for the excerpt label -->
+                <span class="blog-review-detail-excerpt-content-span">EXCERPT:</span> {{ blog_and_review.excerpt }}
+            </p>
+            <!-- Check availability of blog and review affiliate link and render it -->
+            {% if blog_and_review.affiliate_link %}
+            <a href="{{blog_and_review.affiliate_link}}" class="arrow-button" title="Get it">
+                <span class="arrow">↗</span>
+            </a>
+            <!-- End if condition -->
+            {% endif %}
+        </div>
+    </article>
+    <!-- Else condition -->
+    {% else %}
+    <!-- Message displayed when no blog or review found and redirect client back -->
+    <p class="no-results-message">No blog or review found:
+        <a href="{% url 'homepage:homepage' %}"> Go back</a>
+    </p>
+    <!-- End if condition -->
+    {% endif %}
+</section>
+
+<!-- Include the global footer -->
+{% include 'global_templates/global_footer.html' %}
+
+<!-- Link to the JavaScript file navbar.js -->
+<script src="{% static 'js/navbar.js' %}"></script>
+
+{% endblock %}

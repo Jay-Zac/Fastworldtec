@@ -1,0 +1,15 @@
+<!-- Load static files tag -->
+{% load static %}
+
+<!-- Theme mode switcher -->
+<div class="theme-switcher">
+    <!-- Button to toggle between themes -->
+    <button id="theme-toggle" aria-label="Toggle theme">
+        <span class="theme-icon light-icon">☀️</span>
+        <span class="theme-icon dark-icon">🌙</span>
+        <span class="theme-icon sepia-icon">📜</span>
+    </button>
+</div>
+
+<!-- Tooltip to display current theme -->
+<div id="theme-tooltip" role="tooltip">Current theme: <span id="current-theme">Light</span></div>

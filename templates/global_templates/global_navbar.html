@@ -1,0 +1,34 @@
+<!-- Load static files tag -->
+{% load static %}
+
+<!-- Header section -->
+<header>
+    <nav>
+        <!-- Logo section -->
+        <div class="logo">
+            <!-- Company logo image -->
+            <img src="{% static 'images/fastworldteclogo.png' %}" alt="Fastworldtec Logo" class="logo-image">
+            <!-- Company name/logo text, linked to homepage -->
+            <a id="logo-text" href="{% url 'homepage:homepage' %}"><span class="logo-text">Fastworldtec</span></a>
+        </div>
+
+        <!-- Theme mode switcher -->
+        {% include 'global_templates/theme_switcher.html' %}
+
+        <!-- Navigation links -->
+        <ul class="nav-links">
+            <li><a href="{% url 'homepage:homepage' %}">Home</a></li>
+            <li><a href="#explore">Explore</a></li>
+        </ul>
+
+        <!-- Burger menu for mobile view -->
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+</header>
+
+<!-- Link to the JavaScript file navbar.js -->
+<script src="{% static 'js/navbar.js' %}"></script>

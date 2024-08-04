@@ -1,0 +1,260 @@
+<!-- Extend the base template -->
+{% extends 'global_templates/base.html' %}
+
+<!-- Load static files tag -->
+{% load static %}
+
+<!-- Set the title of the page to "Welcome" -->
+{% block title %} Welcome {% endblock %}
+
+<!-- Start the content block -->
+{% block content %}
+
+<!-- Header section -->
+<header>
+    <nav>
+        <!-- Logo section -->
+        <div class="logo">
+            <!-- Company logo image -->
+            <img src="{% static 'images/fastworldteclogo.png' %}" alt="Fastworldtec Logo" class="logo-image">
+            <!-- Company name/logo text, linked to homepage -->
+            <a id="logo-text" href="{% url 'homepage:homepage' %}"><span class="logo-text">Fastworldtec</span></a>
+        </div>
+
+        <!-- Theme mode switcher -->
+        {% include 'global_templates/theme_switcher.html' %}
+
+        <!-- Navigation links -->
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#reviews-blogs">Reviews & Blogs</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <!-- Burger menu for mobile view -->
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+</header>
+
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <!-- Content of the hero section -->
+    <div class="hero-content">
+        <!-- Main heading of the hero section -->
+        <h1>Welcome to Fastworldtec</h1>
+        <!-- Subheading of the hero section -->
+        <p>Your gateway to digital excellence</p>
+        <!-- Call-to-action button linking to the latest software releases section -->
+        <a href="#latest-software-releases" class="cta-button">Explore Latest Software Releases</a>
+    </div>
+</section>
+
+<!-- Latest Software Releases Section -->
+<section id="latest-software-releases" class="latest-software">
+    <!-- Heading for the latest software releases section -->
+    <h2>Latest Software Releases</h2>
+    <!-- Grid container for software items -->
+    <div class="software-grid">
+        <!-- Check if there are any software items to display -->
+        {% if homepage_software %}
+        <!-- Loop through each software item -->
+        {% for single_homepage_software in homepage_software %}
+        <!-- Individual software card -->
+        <div class="software-card">
+            <!-- Image of the software -->
+            <img class="software-image" src="{{single_homepage_software.image.url}}" alt="Software Image">
+            <!-- Title of the software -->
+            <h3 class="software-title">{{single_homepage_software.title}}</h3>
+            <!-- Check if the software item has a price and display it -->
+            {% if single_homepage_software.price %}
+            <!-- Price of the software -->
+            <span class="software-price">{{single_homepage_software.price}}</span>
+            {% endif %}
+            <!-- Description of the software -->
+            <p class="software-description">{{single_homepage_software.description}}</p>
+            <!-- Affiliate link to get the software -->
+            <a href="{{single_homepage_software.affiliate_link}}" class="software-affiliate-link">Get it now</a>
+        </div>
+        <!-- End for loop -->
+        {% endfor %}
+        <!-- End if condition -->
+        {% endif %}
+    </div>
+</section>
+
+<!-- Products Section -->
+<section id="products" class="products">
+    <!-- Heading for the products section -->
+    <h2>Our Curated Selection</h2>
+    <!-- Grid container for product categories -->
+    <div class="product-grid">
+        <!-- Product card for Software -->
+        <div class="product-card">
+            <!-- Icon representing software -->
+            <i class="fas fa-laptop-code"></i>
+            <!-- Product category title -->
+            <h3>Software</h3>
+            <!-- Description of the product category -->
+            <p>Cutting-edge solutions for every need</p>
+            <!-- Link to the software products page -->
+            <a href="{% url 'software:software' %}" class="find-product">Find Software</a>
+        </div>
+        <!-- Product card for Themes -->
+        <div class="product-card">
+            <!-- Icon representing themes -->
+            <i class="fas fa-paint-brush"></i>
+            <!-- Product category title -->
+            <h3>Themes</h3>
+            <!-- Description of the product category -->
+            <p>Beautiful designs to elevate your brand</p>
+            <!-- Link to the themes products page -->
+            <a href="{% url 'themes:themes' %}" class="find-product">Find Themes</a>
+        </div>
+        <!-- Product card for Tools -->
+        <div class="product-card">
+            <!-- Icon representing tools -->
+            <i class="fas fa-tools"></i>
+            <!-- Product category title -->
+            <h3>Tools</h3>
+            <!-- Description of the product category -->
+            <p>Essential utilities for productivity</p>
+            <!-- Link to the tools products page -->
+            <a href="{% url 'tools:tools' %}" class="find-product">Find Tools</a>
+        </div>
+        <!-- Product card for Courses -->
+        <div class="product-card">
+            <!-- Icon representing courses -->
+            <i class="fas fa-graduation-cap"></i>
+            <!-- Product category title -->
+            <h3>Courses</h3>
+            <!-- Description of the product category -->
+            <p>Learn from industry experts and grow</p>
+            <!-- Link to the courses products page -->
+            <a href="{% url 'courses:courses' %}" class="find-product">Find Courses</a>
+        </div>
+    </div>
+</section>
+
+<!-- Reviews and Blogs Section -->
+<section id="reviews-blogs" class="reviews-blogs">
+    <!-- Heading for the reviews and blogs section -->
+    <h2>Reviews and Blogs</h2>
+    <!-- Grid container for blog and review items -->
+    <div class="blog-grid">
+        <!-- Check if there are any blog and review items to display -->
+        {% if blog_and_review %}
+        <!-- Loop through each blog and review item -->
+        {% for single_blog_and_review in blog_and_review %}
+        <!-- Individual blog card -->
+        <article class="blog-card">
+            <!-- Container for the blog image -->
+            <div class="blog-image">
+                <!-- Image of the blog or review -->
+                <img src="{{single_blog_and_review.image.url}}" alt="Blog/Review Image">
+            </div>
+            <!-- Container for the blog content -->
+            <div class="blog-content">
+                <!-- Title of the blog or review -->
+                <h3 class="blog-title">{{single_blog_and_review.title}}</h3>
+                <!-- Excerpt of the blog or review -->
+                <p class="blog-excerpt">{{single_blog_and_review.excerpt}}</p>
+                <!-- Link to the detailed blog or review page -->
+                <a href="{% url 'homepage:detail_blog_review' single_blog_and_review.id %}" class="blog-link">Read
+                    More</a>
+            </div>
+        </article>
+        <!-- End for loop -->
+        {% endfor %}
+        <!-- End if condition -->
+        {% endif %}
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="about">
+    <!-- Heading for the about section -->
+    <h2>About Fastworldtec</h2>
+    <!-- Description about Fastworldtec -->
+    <p>We're passionate about bringing you the best in software, themes, tools, and courses. Our team
+        of experts curates only the finest products to help you succeed in the digital world.
+    </p>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact">
+    <!-- Heading for the contact section -->
+    <h2>Get in Touch</h2>
+    <!-- Contact form -->
+    <form id="contact-form" method="POST">
+        <!-- CSRF token for security -->
+        {% csrf_token %}
+        <!-- Input field for full name -->
+        <input type="text" name="full_name" placeholder="Your Full Name" required>
+        <!-- Input field for email -->
+        <input type="email" name="email" placeholder="Your Email" required>
+        <!-- Textarea for message -->
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <!-- Submit button for the form -->
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+
+<!-- Begin footer section -->
+<footer>
+    <!-- Container for the footer content -->
+    <div class="footer-content">
+
+        <!-- Section for the website's name and slogan -->
+        <div class="footer-section">
+            <h3>Fastworldtec</h3>
+            <p>Your trusted source for digital excellence.</p>
+        </div>
+
+        <!-- Section for quick navigation links -->
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <!-- List of quick navigation links -->
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#reviews-blogs">Reviews & Blogs</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Section for alternative contact methods -->
+        <div class="footer-section">
+            <h3>Alternative Contacts</h3>
+            <!-- Container for social icons or contact icons -->
+            <div class="social-icons">
+                <!-- Phone contact icon -->
+                <a href="tel:+1 929 566 4618"><i class="fa-solid fa-phone"></i></a>
+                <!-- Email contact icon -->
+                <a href="mailto:infofirstworldtec@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer bottom section with copyright information -->
+    <div class="footer-bottom">
+        <p>&copy; 2024 Fastworldtec. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- Link to the external JavaScript file navbar.js -->
+<script src="{% static 'js/navbar.js' %}"></script>
+
+
+<!-- Link to the JavaScript file message_form.js -->
+<script src="{% static 'js/message_form.js' %}"></script>
+
+{% endblock %}
+

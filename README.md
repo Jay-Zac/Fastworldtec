@@ -28,7 +28,7 @@ git clone https://github.com/Jay-Zac/Fastworldtec.git
 pip install -r requirements.txt
 
 ```
-Usage
+## Usage
 
 Run Migrations:
 ```bash
@@ -42,7 +42,7 @@ python manage.py runserver
 
 Access the Application: Open your browser and go to http://127.0.0.1:8000 to view the application.
 
-Contributing
+## Contributing
 
 Contributions are welcome! If you’d like to contribute to this project, please follow these steps:
 
@@ -53,7 +53,7 @@ Commit your changes (```bash git commit -am 'Add new feature' ```).
 Push to the branch (```bash git push origin feature-branch ```).
 Create a new Pull Request.
 
-Acknowledgements
+## Acknowledgements
 
 Django and the Django community
 JavaScript and modern frontend technologies

@@ -560,6 +560,7 @@ nav {
     border-radius: 10px; /* Rounded corners */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Light shadow */
     transition: transform 0.3s ease; /* Smooth transition */
+    min-width: 0; /* Ensure cards don't overflow */
 }
 
 .product-card:hover {
@@ -599,19 +600,28 @@ nav {
     .products h2 {
         font-size: 2.3rem; /* Adjust heading font size for medium screens */
     }
-}
 
-/* For screens up to 600px wide */
-@media screen and (max-width: 600px) {
-    .products h2 {
-        font-size: 2.3rem; /* Adjust heading font size for smaller screens */
+    .product-card {
+        padding: 2.2rem; /* Adjust padding for smaller screens */
+    }
+
+    .find-product {
+        padding: 0.5rem 2.8rem; /* Adjust padding for smaller screens */
     }
 }
 
 /* For screens up to 480px wide */
 @media (max-width: 480px) {
     .products h2 {
-        font-size: 2.3rem; /* Adjust heading font size for very small screens */
+        font-size: 1.8rem; /* Adjust heading font size for very small screens */
+    }
+
+    .product-card {
+        padding: 2.5rem; /* Adjust padding for very small screens */
+    }
+
+    .find-product {
+        padding: 1rem; /* Adjust padding for very small screens */
     }
 }
 
@@ -1116,6 +1126,7 @@ footer {
     display: block; /* Show clear button when input has text */
 }
 
+/* Search button styles */
 .search-button {
     background-color: #4a90e2; /* Blue background color */
     border: none; /* No border */
@@ -1128,15 +1139,18 @@ footer {
     justify-content: center; /* Center items horizontally */
 }
 
+/* Search button icon styles */
 .search-button svg {
     width: 20px; /* Icon width */
     height: 20px; /* Icon height */
 }
 
+/* Hover effect for the search button */
 .search-button:hover {
     background-color: #2a70c2; /* Darker blue on hover */
 }
 
+/* Focus effect for the search button */
 .search-button:focus {
     background-color: #3a80d2; /* Slightly lighter blue on focus */
     outline: none; /* Remove outline */
@@ -1144,7 +1158,7 @@ footer {
 
 /* Media Queries for Responsive Design */
 @media screen and (max-width: 600px) {
-    .search-form {
+     .search-form {
         max-width: 90%; /* Adjust width for smaller screens */
     }
 
@@ -1152,14 +1166,6 @@ footer {
         font-size: 14px; /* Smaller font size for input */
     }
 
-    .search-button {
-        padding: 12px 15px; /* Adjust padding for button */
-    }
-
-    .search-button svg {
-        width: 18px; /* Smaller icon width */
-        height: 18px; /* Smaller icon height */
-    }
 }
 
 @media (max-width: 768px) {
@@ -1214,14 +1220,17 @@ footer {
 /* no-results-message */
 #no-results-message {
     display: none; /* Ensures the element is not displayed on the page */
+    align-items: center; /* Center items vertically */
+    max-width: 300px; /* Maximum width of the form */
+    margin: 2rem auto; /* Center form with margin */
     text-align: center; /* Center-aligns the text within the message */
     font-size: 1.1rem; /* Sets a slightly larger font size for better readability */
     color: #777; /* Uses a soft gray color for the text to ensure it's readable but not too harsh */
     margin-top: 2rem; /* Adds space above the message to separate it from other content */
-    padding: 1rem; /* Adds padding inside the message for better spacing */
+    padding: 0.8rem; /* Adds padding inside the message for better spacing */
     background-color: #f8d7da; /* Sets a light pink background color to indicate no results in a gentle manner */
     border: 1px solid #f5c6cb; /* Adds a subtle border that matches the background color */
-    border-radius: 5px; /* Rounds the corners of the message box for a modern look */
+    border-radius: 10px; /* Rounds the corners of the message box for a modern look */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow to give the message a slightly lifted appearance */
 }
 
@@ -1524,7 +1533,7 @@ footer {
     /* Fixed position at the bottom right corner */
     position: fixed;
     bottom: 20px;
-    right: 20px;
+    right: 5px;
     /* Button background color */
     background-color: #007bff;
     /* Text color */
@@ -1561,7 +1570,7 @@ footer {
     .back-to-top {
         /* Adjust position and padding */
         bottom: 15px;
-        right: 15px;
+        right: 2px;
         padding: 8px 12px;
     }
 

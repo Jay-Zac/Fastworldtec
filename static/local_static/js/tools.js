@@ -36,10 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
             noResultsMessage.style.display = hasResults ? 'none' : 'block';
         }
 
-        // Display a message if no results are found
-        if (!hasResults && query) {
-            alert('No tools found matching your search.');
-        }
     }
 
     // Add event listener to search input for real-time filtering

@@ -560,7 +560,11 @@ nav {
     border-radius: 10px; /* Rounded corners */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Light shadow */
     transition: transform 0.3s ease; /* Smooth transition */
-    min-width: 0; /* Ensure cards don't overflow */
+    overflow: hidden; /* Prevent content overflow */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .product-card:hover {
@@ -576,6 +580,13 @@ nav {
 .product-card h3 {
     font-size: 1.5rem; /* Medium font size */
     margin-bottom: 1rem; /* Space below the heading */
+    word-wrap: break-word; /* Break long words */
+    overflow-wrap: break-word; /* Ensure proper word wrapping */
+}
+
+.product-card p {
+    word-wrap: break-word; /* Break long words */
+    overflow-wrap: break-word; /* Ensure proper word wrapping */
 }
 
 .find-product {
@@ -587,6 +598,8 @@ nav {
     text-decoration: none; /* No underline */
     font-weight: bold; /* Bold text */
     transition: background-color 0.3s ease; /* Smooth transition */
+    word-wrap: break-word; /* Break long words */
+    overflow-wrap: break-word; /* Ensure proper word wrapping */
 }
 
 .find-product:hover {
@@ -600,28 +613,19 @@ nav {
     .products h2 {
         font-size: 2.3rem; /* Adjust heading font size for medium screens */
     }
+}
 
-    .product-card {
-        padding: 2.2rem; /* Adjust padding for smaller screens */
-    }
-
-    .find-product {
-        padding: 0.5rem 2.8rem; /* Adjust padding for smaller screens */
+/* For screens up to 600px wide */
+@media screen and (max-width: 600px) {
+    .products h2 {
+        font-size: 2.3rem; /* Adjust heading font size for smaller screens */
     }
 }
 
 /* For screens up to 480px wide */
 @media (max-width: 480px) {
     .products h2 {
-        font-size: 1.8rem; /* Adjust heading font size for very small screens */
-    }
-
-    .product-card {
-        padding: 2.5rem; /* Adjust padding for very small screens */
-    }
-
-    .find-product {
-        padding: 1rem; /* Adjust padding for very small screens */
+        font-size: 2.3rem; /* Adjust heading font size for very small screens */
     }
 }
 

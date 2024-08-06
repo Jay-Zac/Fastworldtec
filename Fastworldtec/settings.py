@@ -67,8 +67,8 @@ DATABASES = {
         'NAME': 'fastworldtec_database',  # Name of the database
         'HOST': 'localhost',  # Database host
         'PORT': '3306',  # Database port
-        'USER': 'root',  # Database user
-        'PASSWORD': 'jayzac',  # Database password
+        'USER': '',  # Database user
+        'PASSWORD': '',  # Database password
     }
 }
 

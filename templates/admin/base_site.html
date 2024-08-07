@@ -1,0 +1,8 @@
+{% extends "admin/base.html" %}  <!-- Extends the default Django admin base template -->
+
+{% load static %}  <!-- Loads the static file template tag to use static file URLs -->
+
+{% block extrahead %}
+<!-- Inserts custom content into the <head> section of the admin base template -->
+<link rel="icon" href="{% static 'images/fastworldteclogo.png' %}" type="image/x-icon">
+{% endblock %}

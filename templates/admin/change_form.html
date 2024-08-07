@@ -1,0 +1,32 @@
+<!-- Extends the default change form template of the Django admin -->
+{% extends "admin/change_form.html" %}
+
+<!-- Block to add custom content to the template -->
+{% block content %}
+<style>
+    /* Ensures the message field wraps text and does not overflow */
+    .field-message {
+        white-space: pre-wrap;  /* Preserves whitespace and allows text to wrap */
+        word-wrap: break-word;  /* Forces long words to break and wrap to the next line */
+        overflow-wrap: break-word;  /* Ensures text breaks to fit within the container */
+        max-width: 100%;  /* Sets the maximum width to 100% of the container */
+    }
+
+    /* Media query for screens with a maximum width of 575px (small devices) */
+    @media (max-width: 575px) {
+        .field-message {
+            max-width: 100%;  /* Ensures the message field takes up the full width */
+        }
+    }
+
+    /* Media query for screens with a minimum width of 576px (larger devices) */
+    @media (min-width: 576px) {
+        .field-message {
+            max-width: 100%;  /* Fixed width for larger screens, adjust as needed */
+            word-break: break-word;  /* Ensures words break and wrap to the next line */
+        }
+    }
+</style>
+<!-- Includes the original content of the block from the parent template -->
+{{ block.super }}
+{% endblock %}

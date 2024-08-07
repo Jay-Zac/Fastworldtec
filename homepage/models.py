@@ -86,14 +86,9 @@ class Message(models.Model):
     message = models.TextField()
 
     # Field for storing the creation date and time, automatically set when an object is created
-    date_and_time_created = models.DateTimeField(auto_now_add=True)
+    date_created = models.DateField(auto_now_add=True)
 
     # Meta class
     class Meta:
         # Order objects by creation date in descending order
-        ordering = ('-date_and_time_created',)
-
-    # Method to return a string representation of the object
-    def __str__(self):
-        # Return full name and creation date of the message
-        return f'{self.full_name} {self.date_and_time_created}'
+        ordering = ('-date_created',)

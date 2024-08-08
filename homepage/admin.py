@@ -1,11 +1,8 @@
 from django.contrib import admin  # Import Django's admin module to register models
 from .models import HomepageSoftware, BlogAndReview, Message  # Import models to register in the admin interface
 from .forms import HomepageSoftwareForm, BlogAndReviewForm  # Import custom forms for HomepageSoftware and BlogAndReview
-from django.db import models  # Imports the models module from Django's database
-from django.forms import Textarea  # Imports the Textarea widget from Django's forms
-
-# Register homepage models with the Django admin site
-
+from django.urls import reverse  # Import the reverse function to construct URLs based on view names and arguments
+from django.http import HttpResponseRedirect  # Import HttpResponseRedirect to handle HTTP redirects
 
 # Customize the Django admin site titles
 
@@ -37,14 +34,14 @@ class BlogAndReviewAdmin(admin.ModelAdmin):
 admin.site.register(BlogAndReview, BlogAndReviewAdmin)
 
 
-class UserMessageAdmin(admin.ModelAdmin):
+class MessageAdmin(admin.ModelAdmin):
     # Sets a custom template for the change form view in the admin interface
     change_form_template = 'admin/change_form.html'
 
-    # Specify the fields to display in the list view of the UserMessage model
+    # Specify the fields to display in the list view of the Message model
     list_display = ('full_name', 'email', 'date_created',)
 
-    # Make all fields read-only
+    # Make specific fields read-only based on whether the object is being edited
     def get_readonly_fields(self, request, obj=None):
         if obj:  # Editing an existing object
             # Return a list of fields that should be read-only
@@ -52,21 +49,24 @@ class UserMessageAdmin(admin.ModelAdmin):
         # Return the default readonly fields if no object is being edited
         return self.readonly_fields
 
-    # Allow deletion but no addition or change
+    # Disallow the addition of new Message objects
     def has_add_permission(self, request):
-        # Disallow addition of new objects
         return False
 
+    # Disallow changes to existing Message objects
     def has_change_permission(self, request, obj=None):
-        # Disallow changes to existing objects
         return False
 
-    # Override the default form field for the message field to use a Textarea widget
-    formfield_overrides = {
-        models.TextField: {'widget': Textarea(
-            attrs={'rows': 10, 'cols': 80, })},  # Set the dimensions of the textarea
-    }
+    # Override the response after deletion to redirect to the message section
+    def response_delete(self, request, obj_display, obj_id):
+        """
+        Redirect to the message section after deletion.
+        """
+        # Perform the default delete action and get the response
+        super().response_delete(request, obj_display, obj_id)
+        # Redirect to the message section in the admin interface
+        return HttpResponseRedirect(reverse('admin:homepage_message_changelist'))
 
 
-# Register the UserMessage model with the UserMessageAdmin customization
-admin.site.register(Message, UserMessageAdmin)
+# Register the Message model with the custom MessageAdmin class
+admin.site.register(Message, MessageAdmin)
